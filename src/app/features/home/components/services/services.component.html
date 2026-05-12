@@ -1,36 +1,47 @@
-<section id="services-module" class="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden">
+<section id="services-module" class="relative min-h-screen w-full flex items-center justify-center py-24 bg-transparent">
   
-  <div class="absolute inset-0 z-0 pointer-events-none opacity-50">
-    <video #bgVideo autoplay loop muted playsinline class="w-full h-full object-cover mix-blend-screen">
-      <source src="/herovideo.mp4" type="video/mp4" />
-    </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
-  </div>
-
-  <div class="relative z-10 text-center mb-24 px-4">
-    <div class="overflow-hidden">
-      <h2 class="s-anim font-title text-[40px] md:text-[70px] tracking-[0.2em] text-white uppercase leading-none">
-        Servicios
-      </h2>
-    </div>
-    <div class="overflow-hidden mt-4">
-      <p class="s-anim text-[10px] tracking-[0.6em] text-[#00dbe7] uppercase font-bold">High Performance Solutions</p>
-    </div>
-  </div>
-
-  <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-10 max-w-[1400px] w-full">
-    <div *ngFor="let service of services" class="s-card group relative p-[1px] rounded-2xl bg-white/5 overflow-hidden shadow-2xl">
-      <div class="absolute inset-0 bg-gradient-to-b from-[#00dbe7]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-      
-      <div class="relative h-full bg-[#050505]/90 backdrop-blur-xl p-10 rounded-2xl flex flex-col items-center text-center">
-        <span class="material-symbols-outlined text-[#00dbe7] text-[45px] mb-8 drop-shadow-[0_0_15px_rgba(0,219,231,0.4)] group-hover:scale-110 transition-transform duration-500">
-          {{ service.icon }}
-        </span>
-        <h3 class="font-title text-[13px] tracking-[0.2em] uppercase mb-6 text-white">{{ service.title }}</h3>
-        <p class="font-body text-[11px] text-white/40 tracking-widest leading-relaxed uppercase font-light">
-          {{ service.description }}
+  <div class="relative z-10 w-full max-w-[1400px] px-6 md:px-12 flex flex-col xl:flex-row gap-16 xl:gap-24 items-start">
+    
+    <div class="xl:w-1/3 text-left w-full xl:sticky xl:top-32">
+      <div class="overflow-hidden mb-4">
+        <p class="s-anim text-[10px] tracking-[0.4em] text-[#00dbe7] uppercase font-bold">
+          High Performance Solutions
         </p>
       </div>
+      <div class="overflow-hidden mb-6">
+        <h2 class="s-anim font-title text-[40px] md:text-[40px] tracking-[0.15em] text-white uppercase leading-[1.1]">
+          Ingeniería <br> <span class="text-[#00dbe7]">Aplicada</span>
+        </h2>
+      </div>
+      <p class="s-anim font-body text-xs text-white/50 tracking-widest uppercase font-light max-w-sm">
+        Arquitecturas digitales diseñadas para escala crítica y rendimiento absoluto.
+      </p>
     </div>
+
+    <div class="xl:w-2/3 w-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+      <div *ngFor="let service of services" class="s-card group relative p-8 md:p-12 rounded-xl bg-white/[0.03] backdrop-blur-md border border-white/5 hover:border-[#00dbe7]/30 transition-all duration-500 overflow-hidden">
+        
+        <div class="absolute inset-0 bg-gradient-to-br from-[#00dbe7]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        
+        <div class="relative z-10 flex justify-between items-start mb-20">
+          <span class="font-title text-[30px] md:text-[40px] leading-none text-white/10 group-hover:text-[#00dbe7]/20 transition-colors duration-500">
+            {{ service.id }}
+          </span>
+          <span class="material-symbols-outlined text-white/20 group-hover:text-[#00dbe7] text-[24px] transition-colors duration-500">
+            {{ service.icon }}
+          </span>
+        </div>
+        
+        <div class="relative z-10">
+          <h3 class="font-title text-[14px] tracking-[0.2em] uppercase mb-4 text-white group-hover:text-[#00dbe7] transition-colors">
+            {{ service.title }}
+          </h3>
+          <p class="font-body text-[11px] text-white/40 tracking-widest leading-relaxed uppercase font-light">
+            {{ service.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>

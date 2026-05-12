@@ -3,10 +3,14 @@
     <div class="text-sm font-bold tracking-[0.3em] uppercase">RLP</div>
     
     <div class="hidden md:flex items-center gap-8">
-      <a href="#" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors">Servicios</a>
-      <a href="#" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors">Metodología</a>
-      <a href="#" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors">Equipo</a>
-      <a href="#" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors">Proyectos</a>
+      <a href="#hero" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors" (click)="scrollToSection($event, 'hero')">Inicio</a>
+      <a href="#servicios" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors" (click)="scrollToSection($event, 'servicios')">Servicios</a>
+      <a href="#metodologia" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors" (click)="scrollToSection($event, 'metodologia')">Metodología</a>
+      <a href="#clientes" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors" (click)="scrollToSection($event, 'clientes')">Clientes</a>
+      <a href="#proyectos" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors" (click)="scrollToSection($event, 'proyectos')">Proyectos</a>
+      <a href="#roadmap" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors" (click)="scrollToSection($event, 'roadmap')">RoadMap</a>
+      <a href="#equipo" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors" (click)="scrollToSection($event, 'equipo')">Equipo</a>
+      <a href="#contacto" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors" (click)="scrollToSection($event, 'contacto')">Contacto</a>
     </div>
 
     <button class="bg-transparent text-white border border-s border-white px-md py-xs rounded-full text-[12px] font-bold hover:border-[#00dbe766] hover:scale-105 transition-transform duration-300">

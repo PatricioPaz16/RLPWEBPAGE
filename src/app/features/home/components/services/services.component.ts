@@ -1,11 +1,4 @@
-import {
-  Component,
-  AfterViewInit,
-  PLATFORM_ID,
-  Inject,
-  ViewChild,
-  ElementRef
-} from '@angular/core';
+import { Component, AfterViewInit, PLATFORM_ID, Inject, ElementRef } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -21,56 +14,23 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class ServicesComponent implements AfterViewInit {
   services = [
-    {
-      icon: 'inventory_2',
-      title: 'Sistemas Core',
-      description: 'Arquitecturas robustas para flujos críticos.',
-    },
-    {
-      icon: 'view_in_ar',
-      title: 'Interfaces 3D',
-      description: 'Experiencias inmersivas de próxima generación.',
-    },
-    {
-      icon: 'monitoring',
-      title: 'Analítica Avanzada',
-      description: 'Visualización de datos en tiempo real.',
-    },
-    {
-      icon: 'hub',
-      title: 'Ecosistemas Cloud',
-      description: 'Despliegues masivos y escalabilidad total.',
-    },
+    { id: '01', icon: 'inventory_2', title: 'Sistemas Core', description: 'Arquitecturas robustas para flujos críticos.' },
+    { id: '02', icon: 'view_in_ar', title: 'Interfaces 3D', description: 'Experiencias inmersivas de próxima generación.' },
+    { id: '03', icon: 'monitoring', title: 'Analítica Avanzada', description: 'Visualización de datos en tiempo real.' },
+    { id: '04', icon: 'hub', title: 'Ecosistemas Cloud', description: 'Despliegues masivos y escalabilidad total.' },
   ];
-  @ViewChild('bgVideo')
-  bgVideo!: ElementRef<HTMLVideoElement>;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private el: ElementRef,
   ) {}
 
-  async ngAfterViewInit() {
+  ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      // Usamos requestAnimationFrame para asegurar que el DOM está listo antes de GSAP
-      requestAnimationFrame(() => {
+      // Usamos un pequeño delay para asegurar que el DOM y el motor 3D ya estén listos
+      setTimeout(() => {
         this.initAnimations();
-      });
-
-           const video = this.bgVideo.nativeElement;
-
-      video.muted = true;
-      video.defaultMuted = true;
-
-      try {
-
-        await video.play();
-
-      } catch (err) {
-
-        console.error('Video autoplay bloqueado:', err);
-
-      }
+      }, 500);
     }
   }
 
@@ -80,35 +40,33 @@ export class ServicesComponent implements AfterViewInit {
     const cards = host.querySelectorAll('.s-card');
     const section = host.querySelector('#services-module');
 
-    // 1. RESET MANUAL: Forzamos el estado invisible antes de que actúe el ScrollTrigger
-    gsap.set([titleElements, cards], { opacity: 0, y: 100 });
+    if (!section) return; // Guard para evitar errores de nativeElement
 
-    // 2. ANIMACIÓN DEL TÍTULO
+    // Configuramos el estado inicial con GSAP en lugar de CSS
+    gsap.set([titleElements, cards], { opacity: 0, y: 30 });
+
     gsap.to(titleElements, {
       scrollTrigger: {
         trigger: section,
-        start: 'top 60%', // Solo arranca cuando la sección está bien entrada
-        toggleActions: 'play none none reverse',
-      },
-      y: 0,
-      opacity: 1,
-      duration: 1.5,
-      stagger: 0.2,
-      ease: 'power4.out',
-    });
-
-    // 3. ANIMACIÓN DE LAS TARJETAS
-    gsap.to(cards, {
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 40%',
+        start: 'top 80%',
       },
       y: 0,
       opacity: 1,
       duration: 1.2,
+      stagger: 0.15,
+      ease: 'power3.out',
+    });
+
+    gsap.to(cards, {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 60%',
+      },
+      y: 0,
+      opacity: 1,
+      duration: 1,
       stagger: 0.1,
-      ease: 'expo.out',
-      delay: 0.3,
+      ease: 'power2.out',
     });
   }
 }

@@ -40,13 +40,13 @@ export class ClientsComponent implements AfterViewInit {
   }
 
   private async setupVideo() {
-    const video = this.bgVideo.nativeElement;
-    video.muted = true;
-    try {
-      await video.play();
-    } catch (err) {
-      console.error('Video blocked:', err);
-    }
+    // const video = this.bgVideo.nativeElement;
+    // video.muted = true;
+    // try {
+    //   await video.play();
+    // } catch (err) {
+    //   console.error('Video blocked:', err);
+    // }
   }
 
   private initAnimations() {

@@ -31,12 +31,9 @@ export class HeaderComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Evitamos problemas de SSR si usas Angular Universal
+    // Reveal animación (opcional)
     if (typeof window !== 'undefined') {
       const tl = gsap.timeline();
-
-
-      // Reveal del texto
       tl.from('.reveal-item', {
         y: 100,
         opacity: 0,
@@ -44,8 +41,25 @@ export class HeaderComponent implements AfterViewInit {
         stagger: 0.15,
         ease: 'power4.out'
       }, "-=1.8");
+    }
+  }
 
-
+  scrollToSection(event: Event, sectionId: string) {
+    event.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Disparar animaciones si la sección tiene elementos animados
+      setTimeout(() => {
+        // Hero
+        if (sectionId === 'hero') {
+          const heroEls = section.querySelectorAll('.hero-reveal');
+          if (heroEls.length > 0 && window['gsap']) {
+            window['gsap'].fromTo(heroEls, { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, stagger: 0.15, ease: 'power4.out' });
+          }
+        }
+        // Puedes agregar más triggers para otras secciones aquí si lo deseas
+      }, 400);
     }
   }
 }

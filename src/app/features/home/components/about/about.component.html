@@ -2,10 +2,10 @@
   
   <div class="absolute inset-0 z-0 flex items-center justify-center opacity-40">
     <div class="relative w-full h-full max-w-[1200px] max-h-[700px]">
-      <video #bgVideo autoplay loop muted playsinline class="w-full h-full object-contain mix-blend-screen scale-150 md:scale-110">
-        <source src="/herovideo.mp4" type="video/mp4" />
-      </video>
-      <div class="absolute inset-0 bg-radial-gradient from-transparent via-black/40 to-black"></div>
+      <!-- <video #bgVideo autoplay loop muted playsinline class="w-full h-full object-contain mix-blend-screen scale-150 md:scale-110">
+        <source src="/video2.mp4" type="video/mp4" />
+      </video> -->
+      <!-- <div class="absolute inset-0 bg-radial-gradient from-transparent via-black/40 to-black"></div> -->
     </div>
   </div>
 
@@ -18,7 +18,7 @@
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/10 pt-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 border-t border-white/10 pt-12">
       <div *ngFor="let phase of phases" class="a-card group">
         <div class="flex items-start gap-6">
           <div class="flex flex-col items-center">
@@ -42,5 +42,4 @@
 
   </div>
 
-  <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00dbe7]/30 to-transparent"></div>
 </section>

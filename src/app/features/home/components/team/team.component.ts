@@ -15,26 +15,26 @@ gsap.registerPlugin(ScrollTrigger);
 export class TeamComponent implements AfterViewInit {
   members = [
     {
-      name: 'Alejandro Ruiz',
+      name: 'Patricio   Paz',
       role: 'CTO / Lead Architect',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop',
-      skills: ['.NET', 'Azure', 'System Design']
+      skills: ['.NET', 'Angular', 'System Design']
     },
     {
-      name: 'Elena Morales',
-      role: 'Frontend Specialist',
+      name: 'Rodolfo   Correa',
+      role: 'Frontend Engineer',
       image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop',
-      skills: ['Angular', 'GSAP', 'UI/UX']
+      skills: ['Angular', 'React', 'UI/UX']
     },
     {
-      name: 'Marcos Vega',
+      name: 'Leandro   Cancinos',
       role: 'Backend Engineer',
       image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop',
-      skills: ['Node.js', 'Go', 'Kubernetes']
+      skills: ['Node.js', '.NET', 'SQL']
     },
     {
-      name: 'Lucía Pardo',
-      role: 'QA / Security',
+      name: 'Pablo   Burgos',
+      role: 'QA / Security / DevOps',
       image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop',
       skills: ['Pentesting', 'CI/CD', 'Docker']
     }

@@ -58,13 +58,13 @@ export class ProcessComponent implements AfterViewInit {
   }
 
   private async setupVideo() {
-    const video = this.bgVideo.nativeElement;
-    video.muted = true;
-    try {
-      await video.play();
-    } catch (err) {
-      console.error('Video autoplay blocked:', err);
-    }
+    // const video = this.bgVideo.nativeElement;
+    // video.muted = true;
+    // try {
+    //   await video.play();
+    // } catch (err) {
+    //   console.error('Video autoplay blocked:', err);
+    // }
   }
 
   private initAnimations() {

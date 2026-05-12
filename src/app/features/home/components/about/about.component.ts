@@ -58,14 +58,14 @@ export class AboutComponent implements AfterViewInit {
   }
 
   private async setupVideo() {
-    const video = this.bgVideo.nativeElement;
-    video.muted = true;
-    video.defaultMuted = true;
-    try {
-      await video.play();
-    } catch (err) {
-      console.error('Video autoplay blocked:', err);
-    }
+    // const video = this.bgVideo.nativeElement;
+    // video.muted = true;
+    // video.defaultMuted = true;
+    // try {
+    //   await video.play();
+    // } catch (err) {
+    //   console.error('Video autoplay blocked:', err);
+    // }
   }
 
   private initAnimations() {

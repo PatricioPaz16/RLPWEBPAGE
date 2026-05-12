@@ -54,10 +54,9 @@ app-clients,
 app-process, 
 app-team, 
 app-contact {
+  background: transparent !important; /* Permite ver el fondo 3D */
   scroll-snap-align: start; // Alinea al borde superior
   scroll-snap-stop: always;  // Obliga a detenerse en cada sección
-  height: 100vh;
-  width: 100%;
   display: block; // Asegura que el contenedor respete el snap
   position: relative;
   overflow: hidden;

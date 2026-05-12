@@ -9,6 +9,8 @@ import { ProcessComponent } from '../components/process/process.component';
 import { TeamComponent } from '../components/team/team.component';
 import { TestimonialsComponent } from '../components/testimonials/testimonials.component';
 import { ContactComponent } from '../components/contact/contact.component';
+import { Background3dComponent } from '../../../shared/background-3d/background-3d.component';
+import { ProjectsComponent } from '../components/proyects/proyects/proyects.component';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +24,8 @@ import { ContactComponent } from '../components/contact/contact.component';
     ProcessComponent,
     TeamComponent,
     ContactComponent,
+    Background3dComponent,
+    ProjectsComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

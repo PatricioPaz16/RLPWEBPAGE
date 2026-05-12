@@ -1,10 +1,13 @@
 :host {
   display: block;
-  background-color: #000000;
+  background: transparent !important; /* Eliminamos cualquier rastro de fondo negro */
 }
 
-/* Clases nativas iniciales para GSAP (ocultos por defecto para la animación) */
-.service-reveal, .service-card {
-  opacity: 0;
-  transform: translateY(60px);
+section {
+  background: transparent !important;
+}
+
+/* Solo ocultamos con opacidad para que GSAP haga el fade-in */
+.s-anim, .s-card {
+  opacity: 1; /* Por defecto visibles por si falla el JS */
 }

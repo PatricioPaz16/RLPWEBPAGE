@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  background: transparent;
+}
+
+.p-card {
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  
+  &:hover {
+    border-color: rgba(0, 219, 231, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    
+    // El efecto de elevación sutil
+    transform: translateY(-5px);
+  }
+
+  // Asegura que las imágenes no se vean "truchas" si no cargan
+  background-image: radial-gradient(circle at center, #111 0%, #050505 100%);
+}
+
+// Estilo para los tags
+span {
+  transition: all 0.3s ease;
+  &:hover {
+    background: rgba(0, 219, 231, 0.1);
+    border-color: rgba(0, 219, 231, 0.5);
+    color: #fff;
+  }
+}
