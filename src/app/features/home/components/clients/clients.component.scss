@@ -1,34 +1,20 @@
-// Clients component styles
 :host {
   display: block;
 }
 
-.project-card {
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-8px);
-    border-color: rgba(0, 219, 231, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 219, 231, 0.1);
-  }
+#clients-module {
+  background: black;
 }
 
-img {
-  transition: grayscale 0.5s ease;
+// Para suavizar el video con el fondo negro
+.bg-radial-gradient {
+  background: radial-gradient(circle, transparent 30%, black 85%);
 }
 
-span {
-  animation: fadeInDown 0.4s ease-out;
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+// Efecto sutil de pulsación en los números
+.font-title {
+  span {
+    display: inline-block;
+    filter: drop-shadow(0 0 5px rgba(0, 219, 231, 0.4));
   }
 }

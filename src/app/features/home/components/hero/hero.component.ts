@@ -1,22 +1,65 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { 
+  Component, 
+  AfterViewInit, 
+  PLATFORM_ID, 
+  Inject,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
+
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './hero.component.html',
-  styleUrl: './hero.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./hero.component.scss']
 })
-export class HeroComponent {
-  heroImage = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCxm6IJythLl1qb2iee2yoHnc_PA5kGXWZOaYjwuvtp1sp9BxmljkuQzv8JMkJvpGqkKq_5iNHrceYp7u6mxqpWXwP5_EJij-3c-WdGtRgjhThF41zjmK34Vg28-wc1J92OnPMjhm1xt9XaMdqmMKzVX9zFfCpD_KdTO7OtOZkNK4eVK_VtRxGQsdXrcL7h8yR62c3fMFK3PsJKdiQYyEyrVVclWg7ePNyBqQJhYSz5AZCnQXQMTUD1kS-QuRiywhzy7v9PP0uteC4e';
+export class HeroComponent implements AfterViewInit {
 
-  onCtaClick(): void {
-    console.log('Starting project...');
+  @ViewChild('bgVideo')
+  bgVideo!: ElementRef<HTMLVideoElement>;
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+  async ngAfterViewInit() {
+
+    if (isPlatformBrowser(this.platformId)) {
+
+      this.initAnimations();
+
+      const video = this.bgVideo.nativeElement;
+
+      video.muted = true;
+      video.defaultMuted = true;
+
+      try {
+
+        await video.play();
+
+      } catch (err) {
+
+        console.error('Video autoplay bloqueado:', err);
+
+      }
+    }
   }
 
-  onPortfolioClick(): void {
-    console.log('View portfolio...');
+  private initAnimations() {
+
+    const tl = gsap.timeline();
+
+    tl.to('.hero-reveal', {
+      y: 0,
+      opacity: 1,
+      duration: 1.8,
+      stagger: 0.15,
+      ease: 'power4.out',
+      delay: 0.2
+    });
   }
 }

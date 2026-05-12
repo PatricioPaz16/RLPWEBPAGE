@@ -1,6 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit, PLATFORM_ID, Inject, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-contact',
@@ -10,49 +14,59 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './contact.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactComponent {
+export class ContactComponent implements AfterViewInit {
   contactForm: FormGroup;
   isSubmitting = false;
-  submitSuccess = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private el: ElementRef
+  ) {
     this.contactForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      company: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       message: ['', [Validators.required, Validators.minLength(10)]],
+    });
+  }
+
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      requestAnimationFrame(() => {
+        this.initAnimations();
+      });
+    }
+  }
+
+  private initAnimations() {
+    const host = this.el.nativeElement;
+    const reveals = host.querySelectorAll('.contact-reveal');
+    const section = host.querySelector('#contact-module');
+
+    // RESET: Estado inicial
+    gsap.set(reveals, { opacity: 0, y: 50 });
+
+    // Animación de entrada vinculada al Scroll
+    gsap.to(reveals, {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 60%',
+        toggleActions: 'play none none reverse',
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1.5,
+      stagger: 0.2,
+      ease: 'power4.out',
     });
   }
 
   onSubmit(): void {
     if (this.contactForm.valid) {
       this.isSubmitting = true;
-      // Simulated API call
       setTimeout(() => {
-        console.log('Form submitted:', this.contactForm.value);
         this.isSubmitting = false;
-        this.submitSuccess = true;
         this.contactForm.reset();
-        setTimeout(() => {
-          this.submitSuccess = false;
-        }, 3000);
-      }, 1500);
+      }, 2000);
     }
-  }
-
-  get name() {
-    return this.contactForm.get('name');
-  }
-
-  get company() {
-    return this.contactForm.get('company');
-  }
-
-  get email() {
-    return this.contactForm.get('email');
-  }
-
-  get message() {
-    return this.contactForm.get('message');
   }
 }

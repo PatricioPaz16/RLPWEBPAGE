@@ -1,41 +1,43 @@
-<section class="relative min-h-[921px] flex items-center pt-xl">
-  <div class="max-w-container-max mx-auto px-xl grid md:grid-cols-2 gap-lg items-center">
-    <!-- Content -->
-    <div class="z-10">
-      <span class="inline-block font-label-caps text-label-caps text-primary-fixed-dim bg-primary-fixed-dim/10 px-sm py-xs rounded-full mb-md">
-        MÉTODO READ LEARN PRACTICE
+<section class="relative w-full h-screen bg-[#000000] flex flex-col items-center justify-center overflow-hidden">
+
+  <div class="absolute inset-0 z-0 flex items-center justify-center mix-blend-screen opacity-90 pointer-events-none">
+    <video #bgVideo autoplay loop muted playsinline class="w-full h-full object-cover mix-blend-screen">
+      <source src="/herovideo.mp4" type="video/mp4" />
+    </video>
+
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,#000000_80%)]"></div>
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center justify-center w-full px-4 mt-12">
+
+    <div class="overflow-hidden mb-6">
+      <span class="hero-reveal block font-body text-[10px] md:text-xs tracking-[0.4em] text-white/50 uppercase">
+        Ingeniería de Precisión
       </span>
-      <h1 class="font-display-lg text-display-lg leading-tight mb-md">
-        Transformamos Visión en Software de
-        <span class="text-primary-fixed-dim">Alto Rendimiento</span>
-      </h1>
-      <p class="text-body-lg text-on-surface-variant mb-lg max-w-lg">
-        Soluciones a medida para PYMES y apps móviles con metodología RLP. Ingeniería de precisión para la era digital.
-      </p>
-      <div class="flex gap-md flex-wrap">
-        <button
-          (click)="onCtaClick()"
-          class="bg-primary-fixed-dim text-on-primary px-lg py-md rounded-lg font-label-caps text-label-caps font-bold hover:brightness-110 active:scale-95 transition-all duration-200"
-        >
-          EMPEZAR PROYECTO
-        </button>
-        <button
-          (click)="onPortfolioClick()"
-          class="border border-primary-fixed-dim text-primary-fixed-dim px-lg py-md rounded-lg font-label-caps text-label-caps font-bold hover:bg-primary-fixed-dim/10 transition-all duration-200"
-        >
-          VER PORTAFOLIO
-        </button>
-      </div>
     </div>
 
-    <!-- Image -->
-    <div class="relative">
-      <div class="absolute -top-20 -right-20 w-80 h-80 bg-primary-fixed-dim/20 blur-[120px] rounded-full"></div>
-      <img
-        [src]="heroImage"
-        alt="Software Engineering Visualization"
-        class="rounded-xl glass-panel p-2 rotate-2 hover:rotate-0 transition-transform duration-500 cyan-glow"
-      />
+    <div class="overflow-hidden mb-8 md:mb-10 w-full flex justify-center">
+      <h1
+        class="hero-reveal font-title text-[80px] md:text-[180px] tracking-[0.2em] md:tracking-[0.4em] leading-[0.9] text-white text-center ml-[0.2em] md:ml-[0.4em]">
+        RLP
+      </h1>
     </div>
+
+    <div class="overflow-hidden mb-12">
+      <p
+        class="hero-reveal font-body text-sm md:text-base text-white/70 tracking-[0.2em] uppercase font-light text-center">
+        Software that simply works.
+      </p>
+    </div>
+    <!-- 
+    <div class="hero-reveal flex flex-col items-center gap-4 mt-4">
+      <button class="bg-white text-black px-10 md:px-14 py-4 md:py-5 rounded-full font-body font-bold text-[10px] md:text-xs uppercase tracking-widest hover:scale-105 hover:bg-[#00dbe7] transition-all duration-300">
+        Instalar RLP
+      </button>
+      <span class="font-body text-[9px] md:text-[10px] text-white/30 tracking-widest uppercase">
+        30-days technical warranty
+      </span>
+    </div> -->
+
   </div>
 </section>

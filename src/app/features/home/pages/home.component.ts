@@ -21,7 +21,6 @@ import { ContactComponent } from '../components/contact/contact.component';
     ClientsComponent,
     ProcessComponent,
     TeamComponent,
-    TestimonialsComponent,
     ContactComponent,
   ],
   templateUrl: './home.component.html',

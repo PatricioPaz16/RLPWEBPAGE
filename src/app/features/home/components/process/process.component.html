@@ -1,23 +1,48 @@
-<section class="py-xl">
-  <div class="max-w-container-max mx-auto px-xl">
-    <h2 class="font-headline-md text-headline-md text-center mb-lg">Nuestro Roadmap de Éxito</h2>
+<section id="process-module" class="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden">
+  
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] w-full max-w-[1400px] aspect-video z-0 mix-blend-screen pointer-events-none opacity-70">
+    <video #bgVideo autoplay loop muted playsinline class="w-full h-full object-cover md:object-contain scale-125 md:scale-100">
+      <source src="/herovideo.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-radial-gradient from-transparent via-black/30 to-black"></div>
+  </div>
 
-    <!-- Process Steps -->
-    <div class="relative flex flex-col md:flex-row justify-between items-start gap-md">
-      <!-- Connector line -->
-      <div class="hidden md:block absolute top-12 left-0 w-full h-[2px] bg-primary-fixed-dim/20 -z-10"></div>
+  <div class="relative z-10 w-full max-w-[1100px] px-8 flex flex-col items-center">
+    
+    <div class="text-center mb-28">
+      <div class="overflow-hidden mb-2">
+        <h2 class="p-anim font-title text-[45px] md:text-[80px] tracking-[0.2em] text-white uppercase leading-none">
+          Roadmap
+        </h2>
+      </div>
+      <div class="overflow-hidden">
+        <p class="p-anim text-[10px] tracking-[0.6em] text-[#00dbe7] uppercase font-bold">Execution Strategy</p>
+      </div>
+    </div>
 
-      <!-- Steps -->
-      <div *ngFor="let step of steps; let i = index" class="flex-1 step glass-panel p-md rounded-xl text-center" [style.--step-index]="i">
-        <!-- Icon Circle -->
-        <div class="w-16 h-16 bg-background border-2 border-primary-fixed-dim rounded-full flex items-center justify-center mx-auto mb-md cyan-glow">
-          <span class="material-symbols-outlined text-primary-fixed-dim">{{ step.icon }}</span>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 border-t border-white/10 pt-16 w-full">
+      <div *ngFor="let step of steps" class="p-step flex flex-col items-center text-center group cursor-default">
+        
+        <div class="w-14 h-14 rounded-full border border-white/5 bg-white/[0.02] flex items-center justify-center mb-6 transition-all duration-700 group-hover:border-[#00dbe7]/40 group-hover:shadow-[0_0_25px_rgba(0,219,231,0.2)]">
+          <span class="material-symbols-outlined text-white/50 text-[26px] group-hover:text-[#00dbe7] group-hover:scale-110 transition-all duration-500">
+            {{ step.icon }}
+          </span>
         </div>
 
-        <!-- Content -->
-        <h4 class="font-headline-md text-[18px] mb-xs">{{ step.title }}</h4>
-        <p class="text-sm text-on-surface-variant">{{ step.description }}</p>
+        <h4 class="font-title text-[13px] tracking-[0.2em] text-white mb-4 uppercase transition-colors duration-500 group-hover:text-[#00dbe7]">
+          {{ step.title }}
+        </h4>
+        
+        <p class="font-body text-[11px] text-white/30 tracking-widest leading-relaxed uppercase font-light max-w-[240px]">
+          {{ step.description }}
+        </p>
       </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-12 w-full flex justify-center opacity-20">
+    <div class="w-48 h-[1px] bg-white/20 relative">
+      <div class="absolute top-0 left-0 w-full h-full bg-[#00dbe7]"></div>
     </div>
   </div>
 </section>

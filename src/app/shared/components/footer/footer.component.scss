@@ -1,32 +1,42 @@
-// Footer component styles
 :host {
   display: block;
 }
 
-// Smooth transitions on social icons
-.material-symbols-outlined {
-  transition: color 0.3s ease;
-
-  &:hover {
-    transform: scale(1.1);
-  }
+.font-title {
+  font-family: var(--font-title);
 }
 
-a {
+.footer-link {
   position: relative;
+  display: inline-block;
 
   &::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: -4px;
     left: 0;
     width: 0;
     height: 1px;
-    background-color: rgba(0, 219, 231, 0.6);
-    transition: width 0.3s ease;
+    background: linear-gradient(90deg, transparent, #00dbe7, transparent);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  &:hover::after {
-    width: 100%;
+  &:hover {
+    text-shadow: 0 0 10px rgba(0, 219, 231, 0.3);
+    &::after {
+      width: 100%;
+    }
   }
+}
+
+.social-icon {
+  &:hover span {
+    transform: translateY(-3px) scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(0, 219, 231, 0.5));
+  }
+}
+
+// Estilización de la línea de estado parpadeante
+.animate-pulse {
+  box-shadow: 0 0 8px #00dbe7;
 }

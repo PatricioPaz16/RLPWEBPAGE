@@ -1,35 +1,46 @@
-<section class="py-xl">
-  <div class="max-w-container-max mx-auto px-xl grid md:grid-cols-2 gap-lg items-center">
-    <!-- Images Grid -->
-    <div class="order-2 md:order-1">
-      <div class="grid grid-cols-2 gap-md">
-        <img
-          [src]="images[0]"
-          alt="Team collaboration"
-          class="rounded-xl glass-panel h-64 object-cover"
-        />
-        <img
-          [src]="images[1]"
-          alt="Engineering workspace"
-          class="rounded-xl glass-panel h-64 object-cover mt-lg"
-        />
-      </div>
+<section id="about-module" class="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden">
+  
+  <div class="absolute inset-0 z-0 flex items-center justify-center opacity-40">
+    <div class="relative w-full h-full max-w-[1200px] max-h-[700px]">
+      <video #bgVideo autoplay loop muted playsinline class="w-full h-full object-contain mix-blend-screen scale-150 md:scale-110">
+        <source src="/herovideo.mp4" type="video/mp4" />
+      </video>
+      <div class="absolute inset-0 bg-radial-gradient from-transparent via-black/40 to-black"></div>
+    </div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-[1400px] px-10">
+    
+    <div class="mb-20">
+      <h2 class="a-anim font-title text-[40px] md:text-[80px] tracking-[0.2em] text-white leading-none uppercase">
+        Metodología<br>
+        <span class="text-[#00dbe7] text-[15px] md:text-[20px] tracking-[0.5em]">RLP SEQUENCE</span>
+      </h2>
     </div>
 
-    <!-- Content -->
-    <div class="order-1 md:order-2">
-      <h2 class="font-display-lg text-[36px] mb-md">Ingeniería con Metodología Propietaria</h2>
-      <div class="space-y-md">
-        <div *ngFor="let phase of phases" class="phase-item flex gap-md">
-          <div class="w-12 h-12 rounded-lg bg-primary-fixed-dim/20 flex items-center justify-center shrink-0">
-            <span class="text-primary-fixed-dim font-bold">{{ phase.number }}</span>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/10 pt-12">
+      <div *ngFor="let phase of phases" class="a-card group">
+        <div class="flex items-start gap-6">
+          <div class="flex flex-col items-center">
+            <span class="font-title text-[#00dbe7] text-2xl group-hover:drop-shadow-[0_0_10px_#00dbe7] transition-all">
+              {{ phase.number }}
+            </span>
+            <div class="w-[1px] h-20 bg-gradient-to-b from-[#00dbe7] to-transparent mt-4"></div>
           </div>
-          <div>
-            <h4 class="font-headline-md text-[18px] text-primary-fixed-dim">{{ phase.title }}</h4>
-            <p class="text-on-surface-variant">{{ phase.description }}</p>
+
+          <div class="pt-1">
+            <h3 class="font-title text-white text-lg tracking-[0.2em] mb-4 uppercase group-hover:text-[#00dbe7] transition-colors">
+              {{ phase.title }}
+            </h3>
+            <p class="font-body text-white/40 text-[12px] leading-relaxed tracking-widest uppercase font-light max-w-[300px]">
+              {{ phase.description }}
+            </p>
           </div>
         </div>
       </div>
     </div>
+
   </div>
+
+  <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00dbe7]/30 to-transparent"></div>
 </section>

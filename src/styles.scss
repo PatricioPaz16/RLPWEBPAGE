@@ -3,92 +3,143 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global Styles */
+/* Google Fonts: Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+/* Rostex Title Fonts - Configuración Directa desde /public/fonts/ */
+@font-face {
+  font-family: 'Rostex-Title-Regular';
+  src: url('/fonts/Rostex-Regular.ttf') format('truetype'),
+       url('/fonts/Rostex-Regular.otf') format('opentype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rostex-Title-Oblique';
+  src: url('/fonts/Rostex-Oblique.ttf') format('truetype'),
+       url('/fonts/Rostex-Oblique.otf') format('opentype');
+  font-style: oblique;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rostex-Title-Outline';
+  src: url('/fonts/Rostex-Outline.ttf') format('truetype'),
+       url('/fonts/Rostex-Outline.otf') format('opentype');
+  font-display: swap;
+}
+
+/* CSS Variables Globales */
+:root {
+  --font-title: 'Rostex-Title-Regular', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+  
+  /* Forzado para librerías como Angular Material o PrimeNG */
+  --font-family: var(--font-title); 
+  --mdc-typography-font-family: var(--font-body);
+}
+
+/* 1. MASTER SCROLL SNAP - El "Imán" de Secciones */
+html {
+  scroll-snap-type: y mandatory; // Activa el comportamiento de salto
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+/* Configuración de las secciones para ocupar toda la pantalla */
+section, 
+app-hero, 
+app-services, 
+app-about, 
+app-clients, 
+app-process, 
+app-team, 
+app-contact {
+  scroll-snap-align: start; // Alinea al borde superior
+  scroll-snap-stop: always;  // Obliga a detenerse en cada sección
+  height: 100vh;
+  width: 100%;
+  display: block; // Asegura que el contenedor respete el snap
+  position: relative;
+  overflow: hidden;
+}
+
+/* 2. Global Reset & Body */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,
 body {
   height: 100%;
   width: 100%;
-  background-color: #08132a;
-  color: #d9e2ff;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #000000; /* Negro puro estilo Argus */
+  color: #ffffff;
+  font-family: var(--font-body) !important;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Custom Utilities */
+/* 3. Tipografía Blindada (Rostex) */
+h1, h2, h3, h4, h5, h6,
+.font-title,
+.font-headline-md,
+.text-headline-md,
+.font-display-lg {
+  font-family: var(--font-title) !important;
+  font-weight: normal !important;
+  letter-spacing: 0.15em !important; 
+  text-transform: uppercase;
+}
+
+/* 4. Custom Utilities & Glassmorphism */
 .glass-panel {
-  background: rgba(45, 52, 54, 0.6);
+  background: rgba(10, 10, 10, 0.7);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 
   &:hover {
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(0, 219, 231, 0.4);
+    box-shadow: 0 0 40px rgba(0, 219, 231, 0.1);
   }
 }
 
 .cyan-glow {
-  box-shadow: 0 0 40px rgba(0, 219, 231, 0.1);
+  box-shadow: 0 0 50px rgba(0, 219, 231, 0.1);
 }
 
-/* Scrollbar Customization */
+/* 5. Scrollbar Estilizada (Invisible o muy fina) */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #08132a;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 219, 231, 0.3);
-  border-radius: 4px;
-
+  border-radius: 10px;
   &:hover {
     background: rgba(0, 219, 231, 0.6);
   }
 }
 
-/* Material Symbols */
+/* 6. Material Symbols */
 .material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
   display: inline-block;
   vertical-align: middle;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
 }

@@ -1,33 +1,24 @@
-// Hero component styles
 :host {
   display: block;
+  background-color: #000000;
 }
 
-h1 {
-  span {
-    background: linear-gradient(135deg, #00dbe7, #74f5ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+/* Clases de utilidad locales para mantener el HTML limpio */
+.font-title {
+  font-family: var(--font-title), sans-serif;
 }
 
-button {
-  &:active {
-    transform: scale(0.95);
-  }
+.font-body {
+  font-family: var(--font-body), sans-serif;
 }
 
-img {
-  animation: floatImage 6s ease-in-out infinite;
+/* El elemento a animar empieza invisible y movido hacia abajo */
+.hero-reveal {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100px);
 }
 
-@keyframes floatImage {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(2deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(0deg);
-  }
+video {
+  pointer-events: none;
 }

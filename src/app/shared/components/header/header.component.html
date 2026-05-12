@@ -1,31 +1,16 @@
-<header class="bg-surface/60 backdrop-blur-xl sticky top-0 z-50 border-b border-white/10 shadow-sm">
-  <nav class="flex justify-between items-center w-full px-xl py-md max-w-container-max mx-auto">
-    <!-- Logo -->
-    <div class="text-headline-md font-headline-md font-bold tracking-tighter text-primary-fixed-dim">
-      RLP
+<header class=" fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-auto">
+  <nav class="bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-8 py-3 flex items-center gap-12">
+    <div class="text-sm font-bold tracking-[0.3em] uppercase">RLP</div>
+    
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors">Servicios</a>
+      <a href="#" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors">Metodología</a>
+      <a href="#" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors">Equipo</a>
+      <a href="#" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors">Proyectos</a>
     </div>
 
-    <!-- Navigation Links - Desktop -->
-    <div class="hidden md:flex items-center gap-md">
-      <a
-        *ngFor="let link of navLinks"
-        [href]="link.href"
-        (click)="onNavClick(link)"
-        [ngClass]="{
-          'text-primary-fixed-dim border-b-2 border-primary-fixed-dim pb-1': link.isActive,
-          'text-on-surface-variant hover:text-primary-fixed-dim': !link.isActive
-        }"
-        class="font-body-md transition-colors duration-300"
-      >
-        {{ link.label }}
-      </a>
-    </div>
-
-    <!-- CTA Button -->
-    <button
-      class="bg-primary-fixed-dim text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps font-bold hover:brightness-110 active:scale-95 transition-all duration-200"
-    >
-      Cotizar Proyecto
+    <button class="bg-transparent text-white border border-s border-white px-md py-xs rounded-full text-[12px] font-bold hover:border-[#00dbe766] hover:scale-105 transition-transform duration-300">
+      Cotizar
     </button>
   </nav>
 </header>

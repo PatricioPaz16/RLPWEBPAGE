@@ -1,22 +1,26 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { 
+  Component, 
+  AfterViewInit, 
+  PLATFORM_ID, 
+  Inject, 
+  ViewChild, 
+  ElementRef 
+} from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export interface RlpPhase {
-  number: string;
-  title: string;
-  description: string;
-}
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-about',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./about.component.scss']
 })
-export class AboutComponent {
-  phases: RlpPhase[] = [
+export class AboutComponent implements AfterViewInit {
+  phases = [
     {
       number: '01',
       title: 'READ (Entender)',
@@ -34,8 +38,71 @@ export class AboutComponent {
     },
   ];
 
-  images = [
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuDRaxrTGPIIE8orMw9S08r0H4866xjwWgT8IydTv8wUkcioAuJ7t7UzhCyaSO8k_ejXB5L4sdvmY9pVSglBOPDtmXI83Xh197brYU9g5ZJQWWzjNw-O3n_6YVFn2LXw0cW8DIvdmrjCa33_JEYmQzSAWPRp_SUBce-8mS1RHIoY2mWcHtwM66foMHlaY_OEfjxZVq3rDCnfn5kUkqmaiU43cV7yTRMR2_wdOnUYwUdqwABHsi9A8ht_h1ngwGTekFi0_I7uHuXxudJE',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuBtzcYx9K76VesbyDnMun1qTYTxiVWMi8B4LQwghC5H2t9D4HaNl-lsJipguU0ZmZUDNOuXk7LnNIn1EY2K8su683RTXfxB5LlNUyhXOZakx0YNEdjzReS4GN2eYBBoo1uNlPlmp6Mw47S_ZBOTQ-40YPSatpDfnIFnPCDPhC6ktfcALbsjsd1RxrY9IwvnTugI_F-1qGKlsYONBDi5bkW6oB0oAO7pvMmPWjKnqKt74pxsxbOES3hPxxCn-9X3V1FspSMAikon2Rvt',
-  ];
+  @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private el: ElementRef
+  ) {}
+
+  async ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      // 1. Manejo del Video
+      this.setupVideo();
+
+      // 2. Animaciones GSAP
+      requestAnimationFrame(() => {
+        this.initAnimations();
+      });
+    }
+  }
+
+  private async setupVideo() {
+    const video = this.bgVideo.nativeElement;
+    video.muted = true;
+    video.defaultMuted = true;
+    try {
+      await video.play();
+    } catch (err) {
+      console.error('Video autoplay blocked:', err);
+    }
+  }
+
+  private initAnimations() {
+    const host = this.el.nativeElement;
+    const titleElements = host.querySelectorAll('.a-anim');
+    const cards = host.querySelectorAll('.a-card');
+    const section = host.querySelector('#about-module');
+
+    // RESET: Todo fuera de escena
+    gsap.set(titleElements, { opacity: 0, x: -50 });
+    gsap.set(cards, { opacity: 0, y: 50 });
+
+    // Animación de Título (Slide from left)
+    gsap.to(titleElements, {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 60%',
+        toggleActions: 'play none none reverse',
+      },
+      x: 0,
+      opacity: 1,
+      duration: 1.2,
+      stagger: 0.2,
+      ease: 'power3.out'
+    });
+
+    // Animación de Fases (Stagger ascendente)
+    gsap.to(cards, {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 40%',
+      },
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      stagger: 0.3,
+      ease: 'expo.out',
+    });
+  }
 }

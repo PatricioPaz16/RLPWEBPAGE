@@ -1,26 +1,46 @@
-<section class="py-xl bg-surface-container-lowest">
-  <div class="max-w-container-max mx-auto px-xl">
-    <h2 class="font-headline-md text-headline-md text-center mb-lg">Mentes Detrás del Código</h2>
+<section id="team-module" class="relative min-h-screen bg-black flex flex-col items-center justify-center py-32 overflow-hidden">
+  
+  <div class="absolute inset-0 opacity-10 pointer-events-none" 
+       style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 40px 40px;">
+  </div>
 
-    <!-- Team Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
-      <div *ngFor="let member of members" class="team-member text-center group">
-        <!-- Avatar -->
-        <div class="relative w-48 h-48 mx-auto mb-md">
-          <img
-            [src]="member.image"
-            [alt]="member.name"
-            class="w-full h-full object-cover rounded-full border-4 border-white/5 group-hover:border-primary-fixed-dim transition-colors duration-300"
-          />
-          <div class="absolute bottom-2 right-2 bg-primary-fixed-dim text-on-primary px-xs py-[2px] rounded text-[10px] font-bold">
-            {{ member.role }}
+  <div class="relative z-10 w-full max-w-[1200px] px-8">
+    
+    <div class="mb-24">
+      <div class="overflow-hidden">
+        <h2 class="t-reveal font-title text-[35px] md:text-[60px] tracking-[0.2em] text-white uppercase leading-none">
+          The <span class="text-[#00dbe7]">Minds</span>
+        </h2>
+      </div>
+      <div class="t-reveal w-20 h-[2px] bg-[#00dbe7] mt-6"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div *ngFor="let member of members" class="t-card group cursor-none">
+        
+        <div class="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#0a0a0a] border border-white/5 mb-6 transition-all duration-700 group-hover:border-[#00dbe7]/40 group-hover:shadow-[0_0_30px_rgba(0,219,231,0.15)]">
+          
+          <img [src]="member.image" 
+               [alt]="member.name"
+               class="w-full h-full object-cover opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000 ease-out">
+          
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+          
+          <div class="absolute bottom-5 left-5 overflow-hidden">
+            <p class="text-[9px] tracking-[0.4em] text-[#00dbe7] font-bold uppercase mb-1">
+              {{ member.role }}
+            </p>
+            <div class="h-[1px] w-0 group-hover:w-full bg-[#00dbe7] transition-all duration-700"></div>
           </div>
         </div>
 
-        <!-- Info -->
-        <h4 class="font-headline-md text-[18px]">{{ member.name }}</h4>
-        <div class="flex justify-center gap-xs mt-xs flex-wrap">
-          <span *ngFor="let skill of member.skills" class="bg-secondary-container text-on-secondary-container px-xs py-[2px] rounded text-[10px]">
+        <h4 class="font-title text-[13px] tracking-[0.2em] text-white mb-3 uppercase">
+          {{ member.name }}
+        </h4>
+        
+        <div class="flex flex-wrap gap-2 opacity-40 group-hover:opacity-100 transition-opacity duration-500">
+          <span *ngFor="let skill of member.skills" 
+                class="text-[8px] tracking-widest text-white border border-white/20 px-2 py-1 uppercase font-light">
             {{ skill }}
           </span>
         </div>

@@ -1,21 +1,35 @@
-<section class="py-xl bg-surface-container-lowest">
-  <div class="max-w-container-max mx-auto px-xl">
-    <!-- Header -->
-    <div class="text-center mb-lg">
-      <h2 class="font-headline-md text-headline-md mb-sm">Nuestros Servicios Especializados</h2>
-      <p class="text-on-surface-variant max-w-2xl mx-auto">
-        Ingeniería enfocada en resultados, desde microservicios hasta despliegues masivos.
-      </p>
-    </div>
+<section id="services-module" class="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden">
+  
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-50">
+    <video #bgVideo autoplay loop muted playsinline class="w-full h-full object-cover mix-blend-screen">
+      <source src="/herovideo.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+  </div>
 
-    <!-- Services Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
-      <div *ngFor="let service of services" class="service-card glass-panel p-lg rounded-xl transition-all hover:-translate-y-2">
-        <span class="material-symbols-outlined text-primary-fixed-dim text-[40px] mb-md">
+  <div class="relative z-10 text-center mb-24 px-4">
+    <div class="overflow-hidden">
+      <h2 class="s-anim font-title text-[40px] md:text-[70px] tracking-[0.2em] text-white uppercase leading-none">
+        Servicios
+      </h2>
+    </div>
+    <div class="overflow-hidden mt-4">
+      <p class="s-anim text-[10px] tracking-[0.6em] text-[#00dbe7] uppercase font-bold">High Performance Solutions</p>
+    </div>
+  </div>
+
+  <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-10 max-w-[1400px] w-full">
+    <div *ngFor="let service of services" class="s-card group relative p-[1px] rounded-2xl bg-white/5 overflow-hidden shadow-2xl">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#00dbe7]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+      
+      <div class="relative h-full bg-[#050505]/90 backdrop-blur-xl p-10 rounded-2xl flex flex-col items-center text-center">
+        <span class="material-symbols-outlined text-[#00dbe7] text-[45px] mb-8 drop-shadow-[0_0_15px_rgba(0,219,231,0.4)] group-hover:scale-110 transition-transform duration-500">
           {{ service.icon }}
         </span>
-        <h3 class="font-headline-md text-[20px] mb-sm">{{ service.title }}</h3>
-        <p class="text-on-surface-variant text-sm">{{ service.description }}</p>
+        <h3 class="font-title text-[13px] tracking-[0.2em] uppercase mb-6 text-white">{{ service.title }}</h3>
+        <p class="font-body text-[11px] text-white/40 tracking-widest leading-relaxed uppercase font-light">
+          {{ service.description }}
+        </p>
       </div>
     </div>
   </div>

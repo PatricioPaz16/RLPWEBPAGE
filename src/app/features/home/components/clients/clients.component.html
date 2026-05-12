@@ -1,34 +1,46 @@
-<section class="py-xl bg-surface-container-low">
-  <div class="max-w-container-max mx-auto px-xl">
-    <!-- Header -->
-    <div class="mb-lg">
-      <h2 class="font-headline-md text-headline-md text-center mb-md">Confían en nuestra Excelencia</h2>
-      <div class="flex flex-wrap justify-center items-center gap-xl opacity-50">
-        <span *ngFor="let client of clients" class="text-headline-md font-bold text-on-surface-variant">
-          {{ client }}
-        </span>
+<section id="clients-module" class="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden">
+  
+  <div class="absolute inset-0 z-0 flex items-center justify-center opacity-50 mix-blend-screen pointer-events-none">
+    <video #bgVideo autoplay loop muted playsinline class="w-full h-full object-cover md:object-contain scale-110">
+      <source src="/herovideo.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-radial-gradient from-transparent via-black/20 to-black"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-[1400px] px-10 flex flex-col md:flex-row justify-between items-center gap-20">
+    
+    <div class="c-anim flex flex-col items-center md:items-start text-center md:text-left">
+      <div class="font-title text-[70px] md:text-[100px] text-white leading-none mb-2 drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+        99<span class="text-[#00dbe7]">%</span>
       </div>
+      <p class="font-body text-[10px] md:text-[12px] tracking-[0.4em] text-white/40 uppercase font-bold">
+        Uptime Garantizado
+      </p>
     </div>
 
-    <!-- Projects Grid -->
-    <div class="grid md:grid-cols-3 gap-md">
-      <div *ngFor="let project of projects" class="project-card glass-panel rounded-xl overflow-hidden group">
-        <!-- Image -->
-        <div class="h-48 bg-surface-variant relative">
-          <img
-            [src]="project.image"
-            [alt]="project.title"
-            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-          />
-        </div>
-
-        <!-- Content -->
-        <div class="p-md">
-          <span class="font-label-caps text-label-caps text-primary-fixed-dim">{{ project.category }}</span>
-          <h4 class="font-headline-md text-[20px] my-xs">{{ project.title }}</h4>
-          <p class="text-sm text-on-surface-variant">{{ project.description }}</p>
-        </div>
-      </div>
+    <div class="c-anim text-center max-w-md">
+      <h2 class="font-title text-[40px] md:text-[60px] tracking-[0.2em] text-white mb-6 uppercase leading-none">
+        Clientes Globales
+      </h2>
+      <div class="w-16 h-[1px] bg-[#00dbe7] mx-auto mb-6"></div>
+      <p class="font-body text-[11px] md:text-[13px] text-white/40 tracking-[0.3em] uppercase leading-relaxed font-light">
+        Ecosistemas digitales validados por líderes de la industria global.
+      </p>
     </div>
+
+    <div class="c-anim flex flex-col items-center md:items-end text-center md:text-right">
+      <div class="font-title text-[70px] md:text-[100px] text-white leading-none mb-2 drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+        4.5<span class="text-[#00dbe7]">y</span>
+      </div>
+      <p class="font-body text-[10px] md:text-[12px] tracking-[0.4em] text-white/40 uppercase font-bold">
+        Experiencia Técnica
+      </p>
+    </div>
+
+  </div>
+
+  <div class="absolute bottom-10 w-[90%] max-w-[1200px] flex justify-between opacity-10">
+    <span class="font-title text-[8px] tracking-[0.5em] text-white">SYSTEM READY</span>
+    <span class="font-title text-[8px] tracking-[0.5em] text-white">RLP_GLOBAL_SYNC v4.2</span>
   </div>
 </section>
