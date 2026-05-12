@@ -1,0 +1,8 @@
+// Home page styles
+:host {
+  display: block;
+}
+
+main {
+  min-height: calc(100vh - 80px);
+}

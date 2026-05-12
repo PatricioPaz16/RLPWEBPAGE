@@ -1,0 +1,57 @@
+// Contact component styles
+:host {
+  display: block;
+}
+
+input,
+textarea {
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: rgba(217, 226, 255, 0.5);
+  }
+}
+
+button {
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &:not(:disabled):active {
+    transform: scale(0.98);
+  }
+
+  transition: all 0.3s ease;
+}
+
+.material-symbols-outlined {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,31 @@
+// Header component styles
+// Tailwind is configured globally, but component-specific styles can go here
+:host {
+  display: block;
+}
+
+// Animation for nav links
+a {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgba(0, 219, 231, 0.5);
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+button {
+  &:active {
+    transform: scale(0.95);
+  }
+}

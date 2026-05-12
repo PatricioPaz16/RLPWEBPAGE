@@ -1,0 +1,28 @@
+<section class="py-xl relative">
+  <div class="absolute inset-0 bg-primary-fixed-dim/5 blur-[150px] -z-10 rounded-full w-1/2 mx-auto"></div>
+  <div class="max-w-container-max mx-auto px-xl">
+    <h2 class="font-headline-md text-headline-md text-center mb-lg">Voces de Éxito</h2>
+
+    <!-- Testimonials Grid -->
+    <div class="grid md:grid-cols-2 gap-lg">
+      <div *ngFor="let testimonial of testimonials" class="testimonial glass-panel p-lg rounded-xl relative group">
+        <!-- Quote Icon -->
+        <span class="material-symbols-outlined absolute top-4 right-4 text-primary-fixed-dim/30 text-[60px]">
+          format_quote
+        </span>
+
+        <!-- Quote -->
+        <p class="text-body-lg italic mb-md leading-relaxed">{{ testimonial.quote }}</p>
+
+        <!-- Author -->
+        <div class="flex items-center gap-md">
+          <div class="w-12 h-12 rounded-full bg-surface-variant"></div>
+          <div>
+            <h5 class="font-bold text-white">{{ testimonial.author }}</h5>
+            <p class="text-xs text-on-surface-variant">{{ testimonial.position }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

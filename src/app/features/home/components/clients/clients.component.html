@@ -1,0 +1,34 @@
+<section class="py-xl bg-surface-container-low">
+  <div class="max-w-container-max mx-auto px-xl">
+    <!-- Header -->
+    <div class="mb-lg">
+      <h2 class="font-headline-md text-headline-md text-center mb-md">Confían en nuestra Excelencia</h2>
+      <div class="flex flex-wrap justify-center items-center gap-xl opacity-50">
+        <span *ngFor="let client of clients" class="text-headline-md font-bold text-on-surface-variant">
+          {{ client }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid md:grid-cols-3 gap-md">
+      <div *ngFor="let project of projects" class="project-card glass-panel rounded-xl overflow-hidden group">
+        <!-- Image -->
+        <div class="h-48 bg-surface-variant relative">
+          <img
+            [src]="project.image"
+            [alt]="project.title"
+            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+          />
+        </div>
+
+        <!-- Content -->
+        <div class="p-md">
+          <span class="font-label-caps text-label-caps text-primary-fixed-dim">{{ project.category }}</span>
+          <h4 class="font-headline-md text-[20px] my-xs">{{ project.title }}</h4>
+          <p class="text-sm text-on-surface-variant">{{ project.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

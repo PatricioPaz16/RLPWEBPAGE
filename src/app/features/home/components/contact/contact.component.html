@@ -1,0 +1,90 @@
+<section class="py-xl bg-surface-container">
+  <div class="max-w-container-max mx-auto px-xl">
+    <div class="glass-panel rounded-2xl p-xl grid md:grid-cols-2 gap-lg items-center">
+      <!-- Content -->
+      <div>
+        <h2 class="font-display-lg text-[36px] mb-md leading-tight">¿Listo para escalar su infraestructura?</h2>
+        <p class="text-on-surface-variant mb-lg">
+          Solicite una <span class="text-primary-fixed-dim font-bold">Auditoría Gratuita</span> de 30 minutos donde analizaremos sus cuellos de botella técnicos y propondremos una hoja de ruta RLP.
+        </p>
+
+        <!-- Benefits -->
+        <div class="space-y-sm">
+          <div class="flex items-center gap-sm text-sm text-on-surface-variant">
+            <span class="material-symbols-outlined text-primary-fixed-dim text-[20px]">check_circle</span>
+            <span>Análisis de arquitectura sin costo.</span>
+          </div>
+          <div class="flex items-center gap-sm text-sm text-on-surface-variant">
+            <span class="material-symbols-outlined text-primary-fixed-dim text-[20px]">check_circle</span>
+            <span>Presupuesto detallado en 48 horas.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-md">
+        <!-- Success Message -->
+        <div *ngIf="submitSuccess" class="bg-primary-fixed-dim/20 border border-primary-fixed-dim rounded-lg p-md text-primary-fixed-dim text-sm animate-pulse">
+          ✓ ¡Gracias! Nos pondremos en contacto pronto.
+        </div>
+
+        <!-- Name & Company -->
+        <div class="grid grid-cols-2 gap-md">
+          <div>
+            <label class="font-label-caps text-[10px] text-on-surface-variant mb-xs block">NOMBRE</label>
+            <input
+              formControlName="name"
+              type="text"
+              placeholder="John Doe"
+              class="w-full bg-surface-container-low border border-white/10 rounded-lg focus:border-primary-fixed-dim focus:ring-1 focus:ring-primary-fixed-dim text-white p-sm transition-colors duration-300"
+              [class.border-red-500]="name?.invalid && name?.touched"
+            />
+          </div>
+          <div>
+            <label class="font-label-caps text-[10px] text-on-surface-variant mb-xs block">EMPRESA</label>
+            <input
+              formControlName="company"
+              type="text"
+              placeholder="Tech S.A."
+              class="w-full bg-surface-container-low border border-white/10 rounded-lg focus:border-primary-fixed-dim focus:ring-1 focus:ring-primary-fixed-dim text-white p-sm transition-colors duration-300"
+              [class.border-red-500]="company?.invalid && company?.touched"
+            />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="font-label-caps text-[10px] text-on-surface-variant mb-xs block">EMAIL CORPORATIVO</label>
+          <input
+            formControlName="email"
+            type="email"
+            placeholder="john@empresa.com"
+            class="w-full bg-surface-container-low border border-white/10 rounded-lg focus:border-primary-fixed-dim focus:ring-1 focus:ring-primary-fixed-dim text-white p-sm transition-colors duration-300"
+            [class.border-red-500]="email?.invalid && email?.touched"
+          />
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label class="font-label-caps text-[10px] text-on-surface-variant mb-xs block">CÓMO PODEMOS AYUDARLE</label>
+          <textarea
+            formControlName="message"
+            placeholder="Cuéntenos sobre su proyecto..."
+            rows="4"
+            class="w-full bg-surface-container-low border border-white/10 rounded-lg focus:border-primary-fixed-dim focus:ring-1 focus:ring-primary-fixed-dim text-white p-sm transition-colors duration-300 resize-none"
+            [class.border-red-500]="message?.invalid && message?.touched"
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          [disabled]="contactForm.invalid || isSubmitting"
+          class="w-full bg-primary-fixed-dim text-on-primary py-md rounded-lg font-label-caps text-label-caps font-bold hover:brightness-110 active:scale-95 shadow-lg shadow-primary-fixed-dim/20 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {{ isSubmitting ? 'PROCESANDO...' : 'SOLICITAR AUDITORÍA GRATUITA' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

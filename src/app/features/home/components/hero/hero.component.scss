@@ -1,0 +1,33 @@
+// Hero component styles
+:host {
+  display: block;
+}
+
+h1 {
+  span {
+    background: linear-gradient(135deg, #00dbe7, #74f5ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+button {
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+img {
+  animation: floatImage 6s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+}

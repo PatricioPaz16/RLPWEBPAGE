@@ -1,0 +1,32 @@
+// Footer component styles
+:host {
+  display: block;
+}
+
+// Smooth transitions on social icons
+.material-symbols-outlined {
+  transition: color 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+a {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: rgba(0, 219, 231, 0.6);
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}

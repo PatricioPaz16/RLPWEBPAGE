@@ -1,0 +1,23 @@
+<section class="py-xl">
+  <div class="max-w-container-max mx-auto px-xl">
+    <h2 class="font-headline-md text-headline-md text-center mb-lg">Nuestro Roadmap de Éxito</h2>
+
+    <!-- Process Steps -->
+    <div class="relative flex flex-col md:flex-row justify-between items-start gap-md">
+      <!-- Connector line -->
+      <div class="hidden md:block absolute top-12 left-0 w-full h-[2px] bg-primary-fixed-dim/20 -z-10"></div>
+
+      <!-- Steps -->
+      <div *ngFor="let step of steps; let i = index" class="flex-1 step glass-panel p-md rounded-xl text-center" [style.--step-index]="i">
+        <!-- Icon Circle -->
+        <div class="w-16 h-16 bg-background border-2 border-primary-fixed-dim rounded-full flex items-center justify-center mx-auto mb-md cyan-glow">
+          <span class="material-symbols-outlined text-primary-fixed-dim">{{ step.icon }}</span>
+        </div>
+
+        <!-- Content -->
+        <h4 class="font-headline-md text-[18px] mb-xs">{{ step.title }}</h4>
+        <p class="text-sm text-on-surface-variant">{{ step.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<section class="py-xl bg-surface-container-lowest">
+  <div class="max-w-container-max mx-auto px-xl">
+    <h2 class="font-headline-md text-headline-md text-center mb-lg">Mentes Detrás del Código</h2>
+
+    <!-- Team Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+      <div *ngFor="let member of members" class="team-member text-center group">
+        <!-- Avatar -->
+        <div class="relative w-48 h-48 mx-auto mb-md">
+          <img
+            [src]="member.image"
+            [alt]="member.name"
+            class="w-full h-full object-cover rounded-full border-4 border-white/5 group-hover:border-primary-fixed-dim transition-colors duration-300"
+          />
+          <div class="absolute bottom-2 right-2 bg-primary-fixed-dim text-on-primary px-xs py-[2px] rounded text-[10px] font-bold">
+            {{ member.role }}
+          </div>
+        </div>
+
+        <!-- Info -->
+        <h4 class="font-headline-md text-[18px]">{{ member.name }}</h4>
+        <div class="flex justify-center gap-xs mt-xs flex-wrap">
+          <span *ngFor="let skill of member.skills" class="bg-secondary-container text-on-secondary-container px-xs py-[2px] rounded text-[10px]">
+            {{ skill }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

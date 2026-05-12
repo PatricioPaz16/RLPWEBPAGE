@@ -1,0 +1,22 @@
+<section class="py-xl bg-surface-container-lowest">
+  <div class="max-w-container-max mx-auto px-xl">
+    <!-- Header -->
+    <div class="text-center mb-lg">
+      <h2 class="font-headline-md text-headline-md mb-sm">Nuestros Servicios Especializados</h2>
+      <p class="text-on-surface-variant max-w-2xl mx-auto">
+        Ingeniería enfocada en resultados, desde microservicios hasta despliegues masivos.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+      <div *ngFor="let service of services" class="service-card glass-panel p-lg rounded-xl transition-all hover:-translate-y-2">
+        <span class="material-symbols-outlined text-primary-fixed-dim text-[40px] mb-md">
+          {{ service.icon }}
+        </span>
+        <h3 class="font-headline-md text-[20px] mb-sm">{{ service.title }}</h3>
+        <p class="text-on-surface-variant text-sm">{{ service.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

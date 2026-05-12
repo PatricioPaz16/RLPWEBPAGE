@@ -1,0 +1,41 @@
+<section class="relative min-h-[921px] flex items-center pt-xl">
+  <div class="max-w-container-max mx-auto px-xl grid md:grid-cols-2 gap-lg items-center">
+    <!-- Content -->
+    <div class="z-10">
+      <span class="inline-block font-label-caps text-label-caps text-primary-fixed-dim bg-primary-fixed-dim/10 px-sm py-xs rounded-full mb-md">
+        MÉTODO READ LEARN PRACTICE
+      </span>
+      <h1 class="font-display-lg text-display-lg leading-tight mb-md">
+        Transformamos Visión en Software de
+        <span class="text-primary-fixed-dim">Alto Rendimiento</span>
+      </h1>
+      <p class="text-body-lg text-on-surface-variant mb-lg max-w-lg">
+        Soluciones a medida para PYMES y apps móviles con metodología RLP. Ingeniería de precisión para la era digital.
+      </p>
+      <div class="flex gap-md flex-wrap">
+        <button
+          (click)="onCtaClick()"
+          class="bg-primary-fixed-dim text-on-primary px-lg py-md rounded-lg font-label-caps text-label-caps font-bold hover:brightness-110 active:scale-95 transition-all duration-200"
+        >
+          EMPEZAR PROYECTO
+        </button>
+        <button
+          (click)="onPortfolioClick()"
+          class="border border-primary-fixed-dim text-primary-fixed-dim px-lg py-md rounded-lg font-label-caps text-label-caps font-bold hover:bg-primary-fixed-dim/10 transition-all duration-200"
+        >
+          VER PORTAFOLIO
+        </button>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="relative">
+      <div class="absolute -top-20 -right-20 w-80 h-80 bg-primary-fixed-dim/20 blur-[120px] rounded-full"></div>
+      <img
+        [src]="heroImage"
+        alt="Software Engineering Visualization"
+        class="rounded-xl glass-panel p-2 rotate-2 hover:rotate-0 transition-transform duration-500 cyan-glow"
+      />
+    </div>
+  </div>
+</section>

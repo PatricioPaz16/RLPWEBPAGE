@@ -1,0 +1,35 @@
+<section class="py-xl">
+  <div class="max-w-container-max mx-auto px-xl grid md:grid-cols-2 gap-lg items-center">
+    <!-- Images Grid -->
+    <div class="order-2 md:order-1">
+      <div class="grid grid-cols-2 gap-md">
+        <img
+          [src]="images[0]"
+          alt="Team collaboration"
+          class="rounded-xl glass-panel h-64 object-cover"
+        />
+        <img
+          [src]="images[1]"
+          alt="Engineering workspace"
+          class="rounded-xl glass-panel h-64 object-cover mt-lg"
+        />
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="order-1 md:order-2">
+      <h2 class="font-display-lg text-[36px] mb-md">Ingeniería con Metodología Propietaria</h2>
+      <div class="space-y-md">
+        <div *ngFor="let phase of phases" class="phase-item flex gap-md">
+          <div class="w-12 h-12 rounded-lg bg-primary-fixed-dim/20 flex items-center justify-center shrink-0">
+            <span class="text-primary-fixed-dim font-bold">{{ phase.number }}</span>
+          </div>
+          <div>
+            <h4 class="font-headline-md text-[18px] text-primary-fixed-dim">{{ phase.title }}</h4>
+            <p class="text-on-surface-variant">{{ phase.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

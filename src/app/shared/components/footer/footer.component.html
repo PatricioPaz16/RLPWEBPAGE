@@ -1,0 +1,49 @@
+<footer class="bg-surface-container-lowest border-t border-white/5 relative">
+  <div class="flex flex-col md:flex-row justify-between items-start w-full px-xl py-lg max-w-container-max mx-auto gap-lg">
+    <!-- Brand Section -->
+    <div class="max-w-xs">
+      <div class="text-headline-md font-headline-md font-bold text-primary-fixed-dim mb-md">
+        RLP
+      </div>
+      <p class="text-sm text-on-surface-variant mb-md">
+        Engineering Excellence. Construimos el software que las empresas visionarias necesitan para liderar sus mercados.
+      </p>
+      <div class="flex gap-md">
+        <span
+          *ngFor="let icon of socialIcons"
+          class="material-symbols-outlined text-on-surface-variant hover:text-primary-fixed-dim cursor-pointer transition-colors duration-300"
+        >
+          {{ icon }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Links Sections -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-xl">
+      <div *ngFor="let section of footerSections">
+        <h6 class="font-label-caps text-label-caps text-primary-fixed-dim mb-md">
+          {{ section.title }}
+        </h6>
+        <ul class="space-y-xs">
+          <li *ngFor="let link of section.links">
+            <a
+              [href]="link.href"
+              class="text-sm text-on-surface-variant hover:text-primary-fixed-dim transition-all underline-offset-4 hover:underline"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="w-full px-xl py-md border-t border-white/5 flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto text-[12px] text-on-surface-variant/50">
+    <div>© {{ currentYear }} RLP Software Factory. Engineering Excellence.</div>
+    <div class="flex gap-md mt-sm md:mt-0">
+      <span>HEADQUARTERS: TECH HUB, LEVEL 42</span>
+      <span class="text-primary-fixed-dim/50">STATUS: ALL SYSTEMS OPERATIONAL</span>
+    </div>
+  </div>
+</footer>
