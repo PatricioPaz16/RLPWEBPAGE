@@ -1,6 +1,7 @@
 import { 
   Component, 
   AfterViewInit, 
+  OnDestroy,
   PLATFORM_ID, 
   Inject, 
   ViewChild, 
@@ -19,7 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
   templateUrl: './process.component.html',
   styleUrls: ['./process.component.scss']
 })
-export class ProcessComponent implements AfterViewInit {
+export class ProcessComponent implements AfterViewInit, OnDestroy {
   steps = [
     {
       icon: 'forum',
@@ -39,6 +40,7 @@ export class ProcessComponent implements AfterViewInit {
   ];
 
   @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
+  private ctx?: gsap.Context;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -73,32 +75,44 @@ export class ProcessComponent implements AfterViewInit {
     const stepsElements = host.querySelectorAll('.p-step');
     const section = host.querySelector('#process-module');
 
-    // RESET MANUAL: Aseguramos que la animación se dispare de nuevo al entrar
-    gsap.set(titleElements, { opacity: 0, y: 50 });
-    gsap.set(stepsElements, { opacity: 0, y: 30 });
+    if (!section || titleElements.length === 0 || stepsElements.length === 0) return;
 
-    // Timeline para secuencia perfecta
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 60%', // Disparo cuando el imán del snap nos deje aquí
-        toggleActions: 'play none none reverse',
-      }
+    this.ctx = gsap.context(() => {
+      gsap.set(titleElements, { opacity: 0, y: 50 });
+      gsap.set(stepsElements, { opacity: 0, y: 30 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+          invalidateOnRefresh: true,
+          fastScrollEnd: true,
+        }
+      });
+
+      tl.to(titleElements, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: 'power3.out'
+      })
+      .to(stepsElements, {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        stagger: 0.12,
+        ease: 'expo.out',
+      }, '-=0.45');
+    }, host);
+
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
     });
+  }
 
-    tl.to(titleElements, {
-      opacity: 1,
-      y: 0,
-      duration: 1.2,
-      stagger: 0.2,
-      ease: 'power3.out'
-    })
-    .to(stepsElements, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      stagger: 0.15,
-      ease: 'expo.out',
-    }, '-=0.5'); // Comienza antes de que termine el título
+  ngOnDestroy() {
+    this.ctx?.revert();
   }
 }

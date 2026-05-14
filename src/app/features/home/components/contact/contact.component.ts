@@ -1,8 +1,9 @@
-import { Component, AfterViewInit, PLATFORM_ID, Inject, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+﻿import { Component, AfterViewInit, PLATFORM_ID, Inject, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, signal } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { EmailService, EmailResponse } from '../../../../services/email.service';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,12 +17,15 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class ContactComponent implements AfterViewInit {
   contactForm: FormGroup;
-  isSubmitting = false;
+  isSubmitting = signal(false);
+  submitMessage = signal('');
 
   constructor(
     private fb: FormBuilder,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private el: ElementRef
+    private el: ElementRef,
+    private emailService: EmailService,
+    private cdr: ChangeDetectorRef
   ) {
     this.contactForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -62,11 +66,42 @@ export class ContactComponent implements AfterViewInit {
 
   onSubmit(): void {
     if (this.contactForm.valid) {
-      this.isSubmitting = true;
-      setTimeout(() => {
-        this.isSubmitting = false;
-        this.contactForm.reset();
-      }, 2000);
+      this.isSubmitting.set(true);
+      this.submitMessage.set('');
+
+      const formData = this.contactForm.value;
+      
+      this.emailService.sendContactEmail({
+        senderEmail: formData.email,
+        message: formData.message,
+        subject: 'RLP Software Factory - Solicitud de Auditoría'
+      }).subscribe({
+        next: (response: EmailResponse) => {
+          this.isSubmitting.set(false);
+          this.submitMessage.set('¡Mensaje enviado exitosamente! Nos pondremos en contacto pronto.');
+          this.contactForm.reset();
+          this.cdr.markForCheck();
+          
+          // Limpiar mensaje después de 5 segundos
+          setTimeout(() => {
+            this.submitMessage.set('');
+            this.cdr.markForCheck();
+          }, 5000);
+        },
+        error: (error: Error) => {
+          this.isSubmitting.set(false);
+          this.submitMessage.set('Error al enviar el mensaje. Por favor, intenta de nuevo.');
+          this.cdr.markForCheck();
+          
+          console.error('Error sending email:', error);
+          
+          // Limpiar mensaje después de 5 segundos
+          setTimeout(() => {
+            this.submitMessage.set('');
+            this.cdr.markForCheck();
+          }, 5000);
+        }
+      });
     }
   }
 }

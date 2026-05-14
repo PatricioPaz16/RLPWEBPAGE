@@ -1,12 +1,120 @@
-// Header component styles
-// Tailwind is configured globally, but component-specific styles can go here
-:host {
+﻿:host {
   display: block;
 }
 
-// Animation for nav links
-a {
+.desktop-nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+.mobile-menu-shell {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 120;
+  width: calc(100vw - 16px);
+  max-width: 520px;
+}
+
+.mobile-menu-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(3, 3, 3, 0.84);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+}
+
+.mobile-menu-trigger-label {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.mobile-trigger-icon {
+  transition: transform 0.24s ease;
+}
+
+.mobile-trigger-icon-open {
+  transform: rotate(180deg);
+}
+
+.mobile-menu-list {
+  margin-top: 8px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(4, 4, 4, 0.86);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition:
+    max-height 0.28s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mobile-menu-list-open {
+  max-height: 460px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobile-menu-item {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 14px;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-menu-item:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu-item-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.mobile-menu-item-active {
+  background: rgba(0, 219, 231, 0.08);
+}
+
+.mobile-menu-item-active .mobile-menu-item-label {
+  color: #00dbe7;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-shell {
+    display: none;
+  }
+}
+
+.nav-link {
   position: relative;
+  padding-bottom: 4px;
 
   &::after {
     content: '';
@@ -24,8 +132,31 @@ a {
   }
 }
 
+.nav-link-active {
+  color: #ffffff;
+
+  &::after {
+    width: 100%;
+    background-color: rgba(0, 219, 231, 0.9);
+  }
+}
+
 button {
   &:active {
     transform: scale(0.95);
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+@media (max-width: 768px) {
+  :host {
+    padding-top: 72px;
   }
 }

@@ -3,12 +3,12 @@
 }
 
 #process-module {
-  background: black;
+  background: transparent;
 }
 
 // Para que el video del portal no tenga cortes bruscos
 .bg-radial-gradient {
-  background: radial-gradient(circle, transparent 10%, black 75%);
+  background: radial-gradient(circle, transparent 10%, rgba(0, 0, 0, 0.72) 75%);
 }
 
 // Efecto de hover en las fases

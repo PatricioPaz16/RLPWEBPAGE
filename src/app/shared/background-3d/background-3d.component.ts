@@ -133,6 +133,7 @@ export class Background3dComponent implements OnInit, OnDestroy {
   
   private mouse = { x: 0, y: 0 };
   private targetMouse = { x: 0, y: 0 };
+  private is3dEnabled = true;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -145,6 +146,8 @@ export class Background3dComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize')
   onWindowResize() {
+    if (!this.is3dEnabled || !this.camera || !this.renderer) return;
+
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -152,6 +155,11 @@ export class Background3dComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      this.is3dEnabled = !prefersReducedMotion;
+
+      if (!this.is3dEnabled) return;
+
       this.initThree();
     }
   }
@@ -168,16 +176,18 @@ export class Background3dComponent implements OnInit, OnDestroy {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.canvasContainer.nativeElement.appendChild(this.renderer.domElement);
 
-    // 3. Geometría (Plano gigante para cubrir bordes)
-    // 120x120 segmentos para mucha definición en las ondas
-    this.geometry = new THREE.PlaneGeometry(80, 60, 120, 120);
+    // Reducimos densidad en pantallas pequeñas para mantener el fondo activo sin penalizar rendimiento.
+    const isSmallViewport = window.innerWidth < 768;
+    const widthSegments = isSmallViewport ? 72 : 120;
+    const heightSegments = isSmallViewport ? 72 : 120;
+    this.geometry = new THREE.PlaneGeometry(80, 60, widthSegments, heightSegments);
 
     // 4. Material Estilo Neon Grid
     const material = new THREE.MeshPhongMaterial({
       color: 0x00dbe7,
       wireframe: true,
       transparent: true,
-      opacity: 0.2,
+      opacity: isSmallViewport ? 0.14 : 0.2,
       blending: THREE.AdditiveBlending,
       side: THREE.DoubleSide
     });

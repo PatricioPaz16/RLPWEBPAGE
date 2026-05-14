@@ -1,32 +1,55 @@
-<header class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-auto">
-  <nav class="bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-8 py-3 flex items-center gap-12">
+﻿<header class="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-[100] w-full max-w-[96vw] md:w-auto md:max-w-[92vw] px-3 md:px-4">
+  <!-- DESKTOP NAV -->
+  <nav class="desktop-nav bg-black/50 backdrop-blur-xl border border-white/10 rounded-full px-7 py-3 items-center gap-8 shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
     <div class="text-sm font-bold tracking-[0.3em] uppercase text-white">RLP</div>
 
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#hero" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors"
-        (click)="scrollToSection($event, 'hero')">Inicio</a>
-      <a href="#servicios"
-        class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors"
-        (click)="scrollToSection($event, 'servicios')">Servicios</a>
-      <a href="#metodologia"
-        class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors"
-        (click)="scrollToSection($event, 'metodologia')">Metodología</a>
-      <a href="#clientes" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors"
-        (click)="scrollToSection($event, 'clientes')">Clientes</a>
-      <a href="#proyectos"
-        class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors"
-        (click)="scrollToSection($event, 'proyectos')">Proyectos</a>
-      <a href="#roadmap" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors"
-        (click)="scrollToSection($event, 'roadmap')">RoadMap</a>
-      <a href="#equipo" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors"
-        (click)="scrollToSection($event, 'equipo')">Equipo</a>
-      <a href="#contacto" class="text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors"
-        (click)="scrollToSection($event, 'contacto')">Contacto</a>
+    <div class="flex items-center gap-5">
+      <a *ngFor="let item of navItems"
+         [href]="'#' + item.id"
+         class="nav-link text-[10px] uppercase tracking-widest text-white/55 hover:text-white transition-colors"
+         [class.nav-link-active]="activeSection() === item.id"
+         (click)="scrollToSection($event, item.id)">
+        {{ item.label }}
+      </a>
     </div>
 
     <button
-      class="bg-transparent text-white border border-s border-white px-6 py-2 rounded-full text-[12px] font-bold hover:border-[#00dbe766] hover:scale-105 transition-transform duration-300">
+      class="bg-transparent text-white border border-white/20 px-6 py-2 rounded-full text-[11px] font-bold hover:border-[#00dbe7aa] hover:text-[#00dbe7] transition-all duration-300"
+      (click)="scrollToSection($event, 'contacto')">
       Cotizar
     </button>
   </nav>
+
+  <!-- MOBILE COLLAPSIBLE NAV -->
+  <div class="mobile-menu-shell">
+    <button
+      type="button"
+      class="mobile-menu-trigger"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="mobileMenuOpen()"
+      aria-controls="mobile-sections-menu"
+      aria-label="Abrir secciones">
+      <span class="mobile-menu-trigger-label">Secciones</span>
+      <span
+        class="material-symbols-outlined mobile-trigger-icon"
+        [class.mobile-trigger-icon-open]="mobileMenuOpen()">
+        keyboard_arrow_down
+      </span>
+    </button>
+
+    <nav
+      id="mobile-sections-menu"
+      class="mobile-menu-list"
+      [class.mobile-menu-list-open]="mobileMenuOpen()"
+      aria-label="Navegacion de secciones">
+      <a *ngFor="let item of navItems"
+         [href]="'#' + item.id"
+         class="mobile-menu-item"
+         [class.mobile-menu-item-active]="activeSection() === item.id"
+         (click)="scrollToSection($event, item.id)">
+        <span class="mobile-menu-item-label">{{ item.label }}</span>
+      </a>
+    </nav>
+  </div>
+
 </header>

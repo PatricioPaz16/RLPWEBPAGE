@@ -11,6 +11,12 @@ interface FooterSection {
   links: FooterLink[];
 }
 
+interface SocialLink {
+  icon: string;
+  href: string;
+  label: string;
+}
+
 @Component({
   selector: 'app-footer',
   standalone: true,
@@ -24,30 +30,36 @@ export class FooterComponent {
 
   footerSections: FooterSection[] = [
     {
-      title: 'SERVICIOS',
+      title: 'NAVEGACION',
       links: [
-        { label: 'SaaS Development', href: '#' },
-        { label: 'Cloud Migration', href: '#' },
-        { label: 'AI Integration', href: '#' },
+        { label: 'Inicio', href: '#hero' },
+        { label: 'Servicios', href: '#servicios' },
+        { label: 'Metodologia', href: '#metodologia' },
+        { label: 'Proyectos', href: '#proyectos' },
       ],
     },
     {
-      title: 'COMPAÑÍA',
+      title: 'SOLUCIONES',
       links: [
-        { label: 'Sobre Nosotros', href: '#' },
-        { label: 'Proyectos', href: '#' },
-        { label: 'Blog', href: '#' },
+        { label: 'Sistemas Core', href: '#servicios' },
+        { label: 'Interfaces 3D', href: '#servicios' },
+        { label: 'RoadMap', href: '#roadmap' },
+        { label: 'Equipo', href: '#equipo' },
       ],
     },
     {
-      title: 'LEGAL',
+      title: 'CONTACTO',
       links: [
-        { label: 'Aviso Legal', href: '#' },
-        { label: 'Privacidad', href: '#' },
-        { label: 'Cookies', href: '#' },
+        { label: 'Formulario', href: '#contacto' },
+        { label: 'contacto@rlpsoftwarefactory.com', href: 'mailto:contacto@rlpsoftwarefactory.com' },
+        { label: '+54 11 0000 0000', href: 'tel:+541100000000' },
       ],
     },
   ];
 
-  socialIcons = ['public', 'terminal', 'hub'];
+  socialLinks: SocialLink[] = [
+    { icon: 'public', href: 'https://www.linkedin.com', label: 'LinkedIn' },
+    { icon: 'terminal', href: '#servicios', label: 'Servicios' },
+    { icon: 'hub', href: '#contacto', label: 'Contacto' },
+  ];
 }

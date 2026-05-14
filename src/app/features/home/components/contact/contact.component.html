@@ -1,16 +1,31 @@
-<section id="contact-module" class="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden">
+﻿<section id="contact-module" class="relative min-h-screen w-full bg-transparent flex flex-col items-center justify-center overflow-hidden py-20">
   
   <div class="absolute inset-0 z-0 pointer-events-none opacity-20">
-    </div>
+  </div>
 
   <div class="relative z-10 text-center mb-16 px-4">
     <div class="overflow-hidden">
-      <h2 class="contact-reveal font-title text-[30px] md:text-[50px] tracking-[0.1em] text-white uppercase leading-tight">
+      <h2 class="contact-reveal font-title text-[24px] md:text-[50px] tracking-[0.08em] md:tracking-[0.1em] text-white uppercase leading-tight">
         ¿LISTO PARA ESCALAR <br> SU INFRAESTRUCTURA?
       </h2>
     </div>
     <div class="overflow-hidden mt-4">
       <p class="contact-reveal text-[10px] tracking-[0.6em] text-[#00dbe7] uppercase font-bold">Iniciando protocolo de conexión</p>
+    </div>
+  </div>
+
+  <!-- Message Display -->
+  <div *ngIf="submitMessage()" class="contact-reveal w-full max-w-[600px] px-6 z-10 mb-8">
+    <div [ngClass]="{
+           'bg-green-500/10': !submitMessage().includes('Error'),
+           'bg-red-500/10': submitMessage().includes('Error')
+         }"
+         class="p-4 rounded-xl border border-white/10 text-center">
+      <p [class.text-green-400]="!submitMessage().includes('Error')"
+         [class.text-red-400]="submitMessage().includes('Error')"
+         class="text-sm font-light">
+        {{ submitMessage() }}
+      </p>
     </div>
   </div>
 
@@ -32,9 +47,9 @@
           <div class="absolute bottom-0 left-0 h-[1px] bg-[#00dbe7] w-0 group-focus-within:w-full transition-all duration-500"></div>
         </div>
 
-        <button type="submit" [disabled]="contactForm.invalid || isSubmitting" 
+        <button type="submit" [disabled]="contactForm.invalid || isSubmitting()" 
                 class="w-full bg-white text-black py-5 rounded-full font-title text-[10px] tracking-[0.4em] uppercase hover:bg-[#00dbe7] transition-all duration-300 disabled:opacity-30 disabled:grayscale mt-4">
-          {{ isSubmitting ? 'PROCESANDO...' : 'SOLICITAR AUDITORÍA' }}
+          {{ isSubmitting() ? 'PROCESANDO...' : 'SOLICITAR AUDITORÍA' }}
         </button>
       </div>
     </form>

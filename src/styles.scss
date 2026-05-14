@@ -39,27 +39,90 @@
 
 /* 1. MASTER SCROLL SNAP - El "Imán" de Secciones */
 html {
-  scroll-snap-type: y mandatory; // Activa el comportamiento de salto
-  scroll-behavior: smooth;
-  overflow-y: scroll;
-  height: 100vh;
+  scroll-behavior: auto;
+  overflow-y: auto;
+  min-height: 100%;
+  height: auto;
+  scroll-padding-top: 88px;
+}
+
+html.is-nav-scrolling {
+  scroll-snap-type: none !important;
 }
 
 /* Configuración de las secciones para ocupar toda la pantalla */
-section, 
-app-hero, 
-app-services, 
-app-about, 
-app-clients, 
-app-process, 
-app-team, 
+.snap-section,
+app-hero,
+app-services,
+app-about,
+app-clients,
+app-proyects,
+app-process,
+app-team,
 app-contact {
   background: transparent !important; /* Permite ver el fondo 3D */
-  scroll-snap-align: start; // Alinea al borde superior
-  scroll-snap-stop: always;  // Obliga a detenerse en cada sección
-  display: block; // Asegura que el contenedor respete el snap
+  display: block;
   position: relative;
-  overflow: hidden;
+}
+
+.snap-section {
+  scroll-margin-top: 88px;
+  overflow: clip;
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 96px;
+    overscroll-behavior-y: contain;
+  }
+
+  .snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-height: 100svh;
+  }
+
+  app-hero,
+  app-services,
+  app-about,
+  app-clients,
+  app-proyects,
+  app-process,
+  app-team,
+  app-contact {
+    min-height: 100svh;
+  }
+}
+
+@media (max-width: 1023px) {
+  html {
+    scroll-snap-type: none;
+    scroll-padding-top: 72px;
+  }
+
+  body {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+
+  .snap-section,
+  app-hero,
+  app-services,
+  app-about,
+  app-clients,
+  app-proyects,
+  app-process,
+  app-team,
+  app-contact {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .snap-section {
+    scroll-margin-top: 72px;
+  }
 }
 
 /* 2. Global Reset & Body */
@@ -68,18 +131,22 @@ app-contact {
   padding: 0;
   box-sizing: border-box;
 }
-html {
-  scroll-behavior: smooth;
-}
+
 body {
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   width: 100%;
   background-color: #000000; /* Negro puro estilo Argus */
   color: #ffffff;
   font-family: var(--font-body) !important;
   font-weight: 300;
+  overflow-y: auto;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+main {
+  width: 100%;
 }
 
 /* 3. Tipografía Blindada (Rostex) */
@@ -92,6 +159,16 @@ h1, h2, h3, h4, h5, h6,
   font-weight: normal !important;
   letter-spacing: 0.15em !important; 
   text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  h1, h2, h3, h4, h5, h6,
+  .font-title,
+  .font-headline-md,
+  .text-headline-md,
+  .font-display-lg {
+    letter-spacing: 0.06em !important;
+  }
 }
 
 /* 4. Custom Utilities & Glassmorphism */

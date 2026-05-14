@@ -17,7 +17,7 @@ export class TeamComponent implements AfterViewInit {
     {
       name: 'Patricio   Paz',
       role: 'CTO / Lead Architect',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop',
+      image: '/patito.jpeg',
       skills: ['.NET', 'Angular', 'System Design']
     },
     {
@@ -29,14 +29,8 @@ export class TeamComponent implements AfterViewInit {
     {
       name: 'Leandro   Cancinos',
       role: 'Backend Engineer',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop',
+      image: '/Lean.jpeg',
       skills: ['Node.js', '.NET', 'SQL']
-    },
-    {
-      name: 'Pablo   Burgos',
-      role: 'QA / Security / DevOps',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop',
-      skills: ['Pentesting', 'CI/CD', 'Docker']
     }
   ];
 

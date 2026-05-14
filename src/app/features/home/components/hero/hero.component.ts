@@ -1,4 +1,4 @@
-import { 
+﻿import { 
   Component, 
   AfterViewInit, 
   PLATFORM_ID, 
@@ -8,11 +8,11 @@ import {
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
-import { HeroRingComponent } from './animations/hero-ring.component';
+
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, HeroRingComponent],
+  imports: [CommonModule],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss']
 })

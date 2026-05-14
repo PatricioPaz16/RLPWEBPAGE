@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './shared/components/header/header.component';
+import { HeaderComponent } from './shared/components/header';
 import { FooterComponent } from './shared/components/footer/footer.component';
 
 @Component({

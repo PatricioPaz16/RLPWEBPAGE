@@ -1,6 +1,7 @@
 import { 
   Component, 
   AfterViewInit, 
+  OnDestroy,
   PLATFORM_ID, 
   Inject, 
   ViewChild, 
@@ -19,7 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
-export class AboutComponent implements AfterViewInit {
+export class AboutComponent implements AfterViewInit, OnDestroy {
   phases = [
     {
       number: '01',
@@ -44,6 +45,8 @@ export class AboutComponent implements AfterViewInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     private el: ElementRef
   ) {}
+
+  private ctx?: gsap.Context;
 
   async ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -74,35 +77,49 @@ export class AboutComponent implements AfterViewInit {
     const cards = host.querySelectorAll('.a-card');
     const section = host.querySelector('#about-module');
 
-    // RESET: Todo fuera de escena
-    gsap.set(titleElements, { opacity: 0, x: -50 });
-    gsap.set(cards, { opacity: 0, y: 50 });
+    if (!section || titleElements.length === 0 || cards.length === 0) return;
 
-    // Animación de Título (Slide from left)
-    gsap.to(titleElements, {
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 60%',
-        toggleActions: 'play none none reverse',
-      },
-      x: 0,
-      opacity: 1,
-      duration: 1.2,
-      stagger: 0.2,
-      ease: 'power3.out'
-    });
+    this.ctx = gsap.context(() => {
+      gsap.set(titleElements, { opacity: 0, x: -50 });
+      gsap.set(cards, { opacity: 0, y: 50 });
 
-    // Animación de Fases (Stagger ascendente)
-    gsap.to(cards, {
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 40%',
-      },
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      stagger: 0.3,
-      ease: 'expo.out',
+      gsap.to(titleElements, {
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+          invalidateOnRefresh: true,
+          fastScrollEnd: true,
+        },
+        x: 0,
+        opacity: 1,
+        duration: 1.1,
+        stagger: 0.15,
+        ease: 'power3.out'
+      });
+
+      gsap.to(cards, {
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 65%',
+          toggleActions: 'play none none reverse',
+          invalidateOnRefresh: true,
+          fastScrollEnd: true,
+        },
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        stagger: 0.2,
+        ease: 'expo.out',
+      });
+    }, host);
+
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
     });
+  }
+
+  ngOnDestroy() {
+    this.ctx?.revert();
   }
 }

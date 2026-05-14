@@ -3,12 +3,11 @@
 }
 
 #about-module {
-  // Aseguramos que el fondo sea negro profundo para el mix-blend del video
-  background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
+  background: transparent;
 }
 
 .bg-radial-gradient {
-  background: radial-gradient(circle, transparent 20%, black 80%);
+  background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.7) 80%);
 }
 
 .a-card {

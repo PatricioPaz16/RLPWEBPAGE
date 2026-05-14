@@ -12,9 +12,9 @@
       </p>
       
       <div class="flex gap-8">
-        <a *ngFor="let icon of socialIcons" href="#" class="social-icon">
+        <a *ngFor="let social of socialLinks" [href]="social.href" class="social-icon" [attr.aria-label]="social.label">
           <span class="material-symbols-outlined text-white/20 hover:text-[#00dbe7] transition-all duration-300 text-[22px]">
-            {{ icon }}
+            {{ social.icon }}
           </span>
         </a>
       </div>
@@ -45,12 +45,8 @@
     
     <div class="flex gap-10 mt-6 md:mt-0 items-center">
       <div class="flex items-center gap-3">
-        <span class="opacity-50">Region:</span>
-        <span class="text-white/40 hover:text-[#00dbe7] cursor-pointer transition-colors">Latam / Global</span>
-      </div>
-      <div class="hidden md:flex items-center gap-3">
-        <span class="material-symbols-outlined text-[14px]">shield</span>
-        <span class="text-[#00dbe7]/50">Encryption Active</span>
+        <span class="opacity-50">Coverage:</span>
+        <span class="text-white/40">Latam / Global</span>
       </div>
     </div>
   </div>
